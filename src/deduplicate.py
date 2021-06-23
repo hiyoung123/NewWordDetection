@@ -6,13 +6,13 @@ from src.simhash import SimHash
 
 class DuplicateRemove:
 
-    def __init__(self, hash_size, block_num):
+    def __init__(self, hash_size, block_num, dict_file='../data/dict.txt', stopwords=[]):
         self.hash_size = hash_size
         self.block_num = block_num
         self.block_size = hash_size/block_num
         self.index = [{} for _ in range(self.block_num)]
         self.doc_hash_dict = {}
-        self.hash = SimHash(hash_size)
+        self.hash = SimHash(hash_size, dict_file, stopwords)
 
     def insert(self, doc, doc_id):
         encoded = self.encode(doc)

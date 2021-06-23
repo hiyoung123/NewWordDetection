@@ -6,15 +6,16 @@ import jieba
 
 
 class SimHash:
-    def __init__(self, hash_size=64):
+    def __init__(self, hash_size=64, dict_file='../data/dict.txt', stopwords=[]):
         self.hash_size = hash_size
-        self.weight_dict = self.init_weight()
         self.tokenizer = jieba.cut
-        self.stopwords = []
+        self.dict_file = dict_file
+        self.stopwords = stopwords
+        self.weight_dict = self.init_weight()
 
     def init_weight(self):
         res = {}
-        with open('../data/dict.txt', 'r', encoding='utf-8') as f:
+        with open(self.dict_file, 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
                 line = line.split()
