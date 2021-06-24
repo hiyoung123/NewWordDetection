@@ -43,8 +43,9 @@ pmi('abc') = min(p('abc')/(p('a')*p('bc')), p('abc')/(p('ab')*p('c')))
 df = min(entropy(left), entropy(right))
 ```
 5. 最终得分
+
+使用 alpha 和 beta 调节各个指标的影响程度，综合得到最终得分 score.
 ```python
-# 使用 alpha 和 beta 调节各个指标的影响程度，综合得到最终得分 score.
 score = alpha * pmi + (1 - alpha) * df
 score = beta * freq + (1 - beta) * score
 ```
