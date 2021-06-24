@@ -30,7 +30,8 @@ class WordInfo:
 
 
 class NewWordDetection:
-    def __init__(self, count=0, freq=0.0, pmi=0.0, df=0.0, score=0.0, alpha=0.0, beta=0.0, max_word_len=5):
+    def __init__(self, count=0, freq=0.0, pmi=0.0, df=0.0, score=0.0, alpha=0.0, beta=0.0, max_word_len=5,
+                 hash_size=64, block_num=4, dict_file='data/dict.txt', stopwords=[]):
         """
         :param count: 词数阈值
         :param freq: 词频阈值
@@ -40,6 +41,10 @@ class NewWordDetection:
         :param alpha: 调节参数 - alpha越大，pmi占比越大，df占比越小
         :param beta: 调节参数 - beta越大，freq 占比越大
         :param max_word_len: 最大词长度
+        :param hash_size: simhash 维度
+        :param block_num: 倒排索引数量
+        :param dict_file: 原有词典，主要用于文本去重中频率计算，其次比较新词
+        :param stopwords: 停用词，用于文本去重
         """
         self.count = count
         self.freq = freq
@@ -50,7 +55,7 @@ class NewWordDetection:
         self.beta = beta
         self.max_word_len = max_word_len
         self.word_info_dict = {}
-        self.remove = DuplicateRemove(64, 4, 'data/dict.txt')
+        self.remove = DuplicateRemove(hash_size, block_num, dict_file, stopwords)
 
     @staticmethod
     def extract_cand_words(text, max_word_len):
