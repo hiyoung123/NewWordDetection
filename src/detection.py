@@ -139,7 +139,9 @@ class NewWordDetection:
             file = os.path.join(file_path, file)
             text = open(file, 'r', encoding='utf-8').read()
             if self.remove.contains(text):
+                print('重复内容文章：%s' % file)
                 continue
+            print('新处理文章：%s' % file)
             self.remove.insert(text, file)
             self.counter(text)
 
