@@ -24,9 +24,11 @@
 1. simhash
 
 参考：[SimHash算法的简单实现](https://github.com/hiyoung123/simhash)
+
 2. 文本去重
 
 参考：[基于simhash的文本去重算法](https://github.com/hiyoung123/DuplicateRemove)
+
 3. 凝固度PMI
 凝固度表示了词内部的聚合能力，凝固度越大，表面字组成该词的可能性越大。
 ```python
